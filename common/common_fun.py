@@ -1,5 +1,5 @@
 from basePage.basePage import BasePage
-from common.desired_caps import appium_desired
+from common.appium_driver import appium_driver
 from selenium.webdriver.common.by import By
 
 

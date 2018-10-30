@@ -7,9 +7,9 @@ PATH = lambda p: os.path.abspath(
 )
 
 
-def appium_desired():
+def appium_driver():
 
-    with open(PATH('../config/caps.yaml'), 'r', encoding='utf-8') as f:
+    with open(PATH('../config/desired_caps.yaml'), 'r', encoding='utf-8') as f:
         data = yaml.load(f)
 
     desired_caps = {
@@ -23,6 +23,5 @@ def appium_desired():
         'recreateChromeDriverSessions': True
     }
 
-    driver = webdriver.Remote('http://' + str(data['ip']) + ':' + '4723' + '/wd/hub', desired_caps)
+    driver = webdriver.Remote('http://' + str(data['ip']) + ':' + str(data['port']) + '/wd/hub', desired_caps)
     return driver
-

@@ -1,5 +1,5 @@
 import unittest
-from common.desired_caps import appium_desired
+from common.appium_driver import appium_driver
 
 
 class TestCase(unittest.TestCase):
@@ -9,7 +9,7 @@ class TestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = appium_desired()
+        cls.driver = appium_driver()
 
     @classmethod
     def tearDownClass(cls):

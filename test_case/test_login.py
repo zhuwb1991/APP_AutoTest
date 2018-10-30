@@ -1,5 +1,5 @@
 import unittest
-from common.myunit import TestCase
+from common.base_case import TestCase
 from businessPage.loginPage import LoginPage
 
 
