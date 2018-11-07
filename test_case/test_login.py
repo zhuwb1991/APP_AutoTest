@@ -14,7 +14,7 @@ class LoginTest(TestCase):
         l.swipe_left()
         l.click(l.start_btn)
 
-        l.passwd_login('zwbapi5@yopmail.com', 'qqqqqq')
+        l.passwd_login('', 'qqqqqq')
         time.sleep(10)
 
     @classmethod

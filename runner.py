@@ -40,7 +40,7 @@ if __name__ == '__main__':
             # server = AppiumServer(d)
             # server.main()
 
-            adb.clear_package('com.intsig.BizCardReader')
+            adb.clear_package('com..BizCardReader')
 
             run_case()
             # server.stop_appium()

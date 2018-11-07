@@ -1,6 +1,6 @@
 platformName: Android
-appPackage: com.intsig.BizCardReader
-appActivity: com.intsig.camcard.BcrFirstLaunchGuide
+appPackage:
+appActivity:
 noReset: True
 unicodeKyeboard: True
 resetKeyboard: True
