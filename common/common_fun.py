@@ -5,9 +5,44 @@ from selenium.webdriver.common.by import By
 
 class Common(BasePage):
 
+    def click(self, loc, index=0):
+        """
+        点击操作
+        :param loc:
+        :param index: 一组元素时的index值
+        :return:
+        """
+        if index != 0:
+            self.find_elements(*loc)[index].click()
+        else:
+            self.find_element(*loc).click()
+
+    def send_keys(self, loc, value='', index=0):
+        """
+        输入操作
+        :param loc:
+        :param value:
+        :param index: 一组元素时的index值
+        :return:
+        """
+        if index != 0:
+            self.find_elements(*loc)[index].clear()
+            self.find_elements(*loc)[index].send_keys(value)
+        else:
+            self.find_element(*loc).clear()
+            self.find_element(*loc).send_keys(value)
+
+    def press_keycode(self, code):
+        """
+        模拟点击系统按键
+        :param code:
+        :return:
+        """
+        self.driver.press_keycode(code)
+
     def get_screen_size(self):
         """
-         获取屏幕尺寸
+        获取屏幕尺寸
         :return: 
         """
         x = self.get_window_size()['width']

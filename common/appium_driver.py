@@ -14,12 +14,12 @@ def appium_driver():
 
     desired_caps = {
         'platformName': data['platformName'],
-        'platformVersion': '8.0',
+        'platformVersion': '4.4.2',
         'deviceName': '4a7e9ca6',
         'noReset': data['noReset'],
         'appActivity': data['appActivity'],
         'appPackage': data['appPackage'],
-        'automationName': data['automationName'],
+        # 'automationName': data['automationName'],
         'recreateChromeDriverSessions': True
     }
 

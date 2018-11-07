@@ -4,6 +4,6 @@ appActivity: com.intsig.camcard.BcrFirstLaunchGuide
 noReset: True
 unicodeKyeboard: True
 resetKeyboard: True
-automationName: Uiautomator2
+#automationName: Uiautomator2
 ip: 127.0.0.1
 port: 4723

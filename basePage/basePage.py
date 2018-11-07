@@ -10,7 +10,7 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def finds_element(self, *loc):
+    def find_element(self, *loc):
         try:
             WebDriverWait(self.driver, WAIT_TIME).until(expected_conditions.presence_of_element_located(loc))
             return self.driver.find_element(*loc)
@@ -23,7 +23,7 @@ class BasePage:
 
     def find_elements(self, *loc):
         try:
-            WebDriverWait(self.driver, 5).until(expected_conditions.presence_of_all_elements_located(*loc))
+            WebDriverWait(self.driver, WAIT_TIME).until(expected_conditions.presence_of_all_elements_located(loc))
             return self.driver.find_elements(*loc)
         except NoSuchElementException:
             print("元素不存在")

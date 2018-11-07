@@ -4,6 +4,7 @@ import time
 import common.HTMLTestRunner
 from common.appium_server import AppiumServer
 import common.adb_tool as a
+from common.adb_tool import ADB
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
@@ -33,11 +34,15 @@ def run_case():
 
 if __name__ == '__main__':
     devices = a.get_devices()
+    adb = ADB()
     if len(devices) > 0:
         for d in devices:
-            server = AppiumServer(d)
-            server.main()
+            # server = AppiumServer(d)
+            # server.main()
+
+            adb.clear_package('com.intsig.BizCardReader')
+
             run_case()
-            server.stop_appium()
+            # server.stop_appium()
     else:
         print("暂无连接的设备")

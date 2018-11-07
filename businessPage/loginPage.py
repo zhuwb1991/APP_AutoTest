@@ -1,19 +1,17 @@
-import time
 from common.common_fun import Common, By
 
 
 class LoginPage(Common):
 
-    # 登录界面元素
-    username_text = (By.ID, 'xxx')
+    # 启动界面
+    start_btn = (By.ID, 'com.intsig.BizCardReader:id/launch_guide_uesr_now')
 
-    def login_action(self):
+    # 账号密码登陆界面
+    account = (By.ID, 'com.intsig.BizCardReader:id/login_email')
+    password = (By.ID, 'com.intsig.BizCardReader:id/login_pwd')
+    login_btn = (By.ID, 'com.intsig.BizCardReader:id/login_btn')
 
-        # self.swipe_left()
-        # self.swipe_left()
-        # time.sleep(5)
-        self.finds_element(*self.username_text).click()
-        time.sleep(5)
-
-    def check_point(self):
-        pass
+    def passwd_login(self, account, password):
+        self.send_keys(self.account, account)
+        self.send_keys(self.password, password)
+        self.click(self.login_btn)
