@@ -26,14 +26,14 @@ class AppiumServer:
             subprocess.Popen("appium -p %s -bp %s -U %s" %
                              (aport, bpport, self.device), shell=True)
 
-    def start_appium(self, aport='4723'):
+    def main(self):
         """
         启动appium
         p:appium port
         bp:bootstrap port
         :return: 返回appium端口参数
         """
-        # aport = random.randint(4700, 4900)
+        aport = random.randint(4700, 4900)
         bpport = random.randint(4700, 4900)
         self.__start_driver(aport, bpport)
 
@@ -41,12 +41,13 @@ class AppiumServer:
             'start appium :p %s bp %s device:%s' %
             (aport, bpport, self.device))
         time.sleep(10)
+        return aport
 
-    def main(self):
+    def start_appium(self):
         """
         :return: 启动appium
         """
-        return self.start_appium()
+        return self.main()
 
     def stop_appium(self):
         """

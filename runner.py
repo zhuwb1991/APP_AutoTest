@@ -5,6 +5,8 @@ import common.HTMLTestRunner
 from common.appium_server import AppiumServer
 import common.adb_tool as a
 from common.adb_tool import ADB
+from common.appium_driver import ParametrizedTestCase
+from test_case.test_login import LoginTest
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
@@ -14,35 +16,49 @@ test_dir = './test_case'
 report_dir = './report'
 
 
-def run_case():
+def run_case(device):
 
     # 加载测试用例
-    discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
+    suite = unittest.TestSuite()
+    suite.addTest(ParametrizedTestCase.param_test(LoginTest, param=device))
 
-    now = time.strftime("%Y%m%d%H%M")
-    report_name = report_dir + '/' + now + '.html'
+    unittest.TextTestRunner(verbosity=2).run(suite)
 
-    fp = open(report_name, "wb")
-    runner = common.HTMLTestRunner.HTMLTestRunner(
-        stream=fp,
-        title="测试报告",
-        description="测试结果"
-    )
-    runner.run(discover)
-    fp.close()
+    # now = time.strftime("%Y%m%d%H%M")
+    # report_name = report_dir + '/' + now + '.html'
+    #
+    # fp = open(report_name, "wb")
+    # runner = common.HTMLTestRunner.HTMLTestRunner(
+    #     stream=fp,
+    #     title="测试报告",
+    #     description="测试结果"
+    # )
+    # runner.run(suite)
+    # fp.close()
 
 
 if __name__ == '__main__':
     devices = a.get_devices()
-    adb = ADB()
+
     if len(devices) > 0:
         for d in devices:
-            # server = AppiumServer(d)
-            # server.main()
+            adb = ADB(d)
 
-            adb.clear_package('com..BizCardReader')
+            server = AppiumServer(d)
+            device_info = adb.get_phone_info()
 
-            run_case()
+            info = {}
+
+            # info["port"] = server.main()
+
+            info["port"] = 4723
+            info["deviceName"] = device_info["brand"]
+            info["release"] = device_info["release"]
+
+            adb.clear_package('com.intsig.BizCardReader')
+
+            run_case(info)
+
             # server.stop_appium()
     else:
         print("暂无连接的设备")
