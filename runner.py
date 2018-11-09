@@ -55,7 +55,7 @@ if __name__ == '__main__':
             info["deviceName"] = device_info["brand"]
             info["release"] = device_info["release"]
 
-            adb.clear_package('com.intsig.BizCardReader')
+            adb.clear_package('com.xxx.BizCardReader')
 
             run_case(info)
 
