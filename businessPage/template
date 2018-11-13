@@ -13,13 +13,8 @@ def get_locators(page_name, element_name):
         if l['desc'] == element_name:
             return l
 
+{% for page, locators in page_list.items() %}
+class {{ page }}: {% for desc, name in locators.items() %}
+    {{ name }} = get_locators('{{ page }}', '{{ desc }}'){% endfor %}
 
-class LoginPage: 
-    account = get_locators('LoginPage', '账号')
-    passwd = get_locators('LoginPage', '密码')
-    login_btn = get_locators('LoginPage', '登录按钮')
-
-
-class LaunchPage: 
-    start_btn = get_locators('LaunchPage', '开始使用')
-
+{% endfor %}
