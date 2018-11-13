@@ -28,8 +28,8 @@ class LoginTest(ParametrizedTestCase):
         COM.click(LaunchPage.start_btn)
 
         # 登录操作
-        COM.send_keys(LoginPage.account, '18801731101')
-        COM.send_keys(LoginPage.passwd, 'Zwb123456')
+        COM.send_keys(LoginPage.account, 'xxxxxx')
+        COM.send_keys(LoginPage.passwd, 'xxxxxx')
         COM.click(LoginPage.login_btn)
         time.sleep(6)
         COM.permission_btn()
