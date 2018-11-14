@@ -1,5 +1,5 @@
 import unittest
-from common.appium_driver import appium_driver
+from public.appium_driver import appium_driver
 
 
 class TestCase(unittest.TestCase):

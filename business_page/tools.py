@@ -1,5 +1,5 @@
 import jinja2
-from common.utils import get_yaml
+from public.utils import get_yaml
 import os
 
 PATH = lambda p: os.path.abspath(
@@ -13,7 +13,7 @@ def get_locators():
     """
     yaml_page = {}
 
-    for fpath, dirname, fnames in os.walk(PATH("../businessPage/element")):
+    for fpath, dirname, fnames in os.walk(PATH("../business_page/element")):
 
         for name in fnames:
             path = os.path.join(fpath, name)

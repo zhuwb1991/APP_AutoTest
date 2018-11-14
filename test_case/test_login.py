@@ -1,7 +1,7 @@
 import unittest
-from common.appium_driver import ParametrizedTestCase
-from common.common_fun import Common
-from businessPage.pages import LaunchPage, LoginPage
+from public.appium_driver import ParametrizedTestCase
+from public.common_fun import Common
+from business_page.pages import LaunchPage, LoginPage
 import time
 
 
@@ -30,8 +30,6 @@ class LoginTest(ParametrizedTestCase):
         # 登录操作
         COM.send_keys(LoginPage.account, 'xxxxxx')
         COM.send_keys(LoginPage.passwd, 'xxxxxx')
-        COM.send_keys(LoginPage.account, '')
-        COM.send_keys(LoginPage.passwd, '')
         COM.click(LoginPage.login_btn)
         time.sleep(6)
         COM.permission_btn()

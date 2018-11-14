@@ -1,6 +1,5 @@
 import subprocess
 import time
-import random
 
 
 def call_adb(command):

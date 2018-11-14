@@ -1,5 +1,5 @@
 import time
-from basePage.basePage import BasePage
+from .base_page import BasePage
 from appium.common.exceptions import NoSuchContextException
 from appium.webdriver.common.touch_action import TouchAction
 

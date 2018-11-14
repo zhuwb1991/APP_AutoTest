@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException, WebDriverException
-from common.logs import Log
+from public.logs import Log
 
 
 log = Log()

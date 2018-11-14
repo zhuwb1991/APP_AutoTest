@@ -1,4 +1,4 @@
-from businessPage import tools
+from business_page import tools
 import os
 
 PATH = lambda p: os.path.abspath(
@@ -16,8 +16,3 @@ def get_locators(page_name, element_name):
         if l['desc'] == element_name:
             return l
 
-{% for page, locators in page_list.items() %}
-class {{ page }}: {% for desc, name in locators.items() %}
-    {{ name }} = get_locators('{{ page }}', '{{ desc }}'){% endfor %}
-
-{% endfor %}

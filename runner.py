@@ -1,11 +1,11 @@
 import unittest
 import os
 import time
-import common.HTMLTestRunner
-from common.appium_server import AppiumServer
-import common.adb_tool as a
-from common.adb_tool import ADB
-from common.appium_driver import ParametrizedTestCase
+import public.HTMLTestRunner
+from public.appium_server import AppiumServer
+import public.adb_tool as a
+from public.adb_tool import ADB
+from public.appium_driver import ParametrizedTestCase
 from test_case.test_login import LoginTest
 
 PATH = lambda p: os.path.abspath(
@@ -28,7 +28,7 @@ def run_case(device):
     # report_name = report_dir + '/' + now + '.html'
     #
     # fp = open(report_name, "wb")
-    # runner = common.HTMLTestRunner.HTMLTestRunner(
+    # runner = public.HTMLTestRunner.HTMLTestRunner(
     #     stream=fp,
     #     title="测试报告",
     #     description="测试结果"

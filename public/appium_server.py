@@ -1,9 +1,8 @@
-import yaml
 import random
 import time
 import platform
 import os
-from common.logs import Log
+from public.logs import Log
 
 log = Log()
 
