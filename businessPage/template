@@ -1,13 +1,16 @@
-from common.utils import get_yaml
+from businessPage import tools
 import os
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p))
 
 
+pages = tools.get_locators()
+
+
 def get_locators(page_name, element_name):
 
-    locators = get_yaml(PATH("../businessPage/pages.yaml"))[page_name]['locators']
+    locators = pages[page_name]['locators']
 
     for l in locators:
         if l['desc'] == element_name:

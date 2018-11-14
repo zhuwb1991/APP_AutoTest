@@ -7,12 +7,28 @@ PATH = lambda p: os.path.abspath(
 
 
 def get_locators():
+    """
+    获取所有yaml页面，生成为一个页面元素字典
+    :return:
+    """
+    yaml_page = {}
 
-    locators = get_yaml(PATH("../businessPage/pages.yaml"))
-    return locators
+    for fpath, dirname, fnames in os.walk(PATH("../businessPage/element")):
+
+        for name in fnames:
+            path = os.path.join(fpath, name)
+            page = get_yaml(path)
+            yaml_page.update(page)
+
+    return yaml_page
 
 
 def get_po(yaml_page):
+    """
+    从locators中得到desc和name,重新生成一个对象
+    :param yaml_page:
+    :return:
+    """
     page_obj = {}
 
     for page, name in yaml_page.items():
@@ -27,7 +43,11 @@ def get_po(yaml_page):
 
 
 def create_page(page_list):
-
+    """
+    根据jinja2模板创建pages.py文件
+    :param page_list:
+    :return:
+    """
     path = PATH('./')
     template_loader = jinja2.FileSystemLoader(searchpath=path)
     template_env = jinja2.Environment(loader=template_loader)
