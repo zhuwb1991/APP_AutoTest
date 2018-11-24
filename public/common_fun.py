@@ -137,6 +137,9 @@ class Common(BasePage):
         list_btn = [button1, button2, button3, button4]
         for btn in list_btn:
             if btn in self.driver.page_source:
-                self.driver.find_element_by_android_uiautomator('new UiSelector().text("' + btn + '")').click()
-                break
+                try:
+                    self.driver.find_element_by_android_uiautomator('new UiSelector().text("' + btn + '")').click()
+                    break
+                except:
+                    pass
 
