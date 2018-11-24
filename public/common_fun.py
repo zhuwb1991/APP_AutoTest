@@ -121,12 +121,12 @@ class Common(BasePage):
         :return:
         """
         if index != 0:
-            self.touch_action().long_press(self.find_element(loc)[index], duration=1800).perform()
+            self.__touch_action().long_press(self.find_element(loc)[index], duration=1800).perform()
             return {"result": True}
         else:
-            self.touch_action().long_press(self.find_element(loc), duration=1800).perform()
+            self.__touch_action().long_press(self.find_element(loc), duration=1800).perform()
 
-    def touch_action(self):
+    def __touch_action(self):
         return TouchAction(self.driver)
 
     def get_toast(self, text, timeout=5, poll_frequency=0.01):
