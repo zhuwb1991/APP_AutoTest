@@ -2,6 +2,9 @@ import time
 from .base_page import BasePage
 from appium.common.exceptions import NoSuchContextException
 from appium.webdriver.common.touch_action import TouchAction
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 
 
 class Common(BasePage):
@@ -126,19 +129,30 @@ class Common(BasePage):
     def touch_action(self):
         return TouchAction(self.driver)
 
+    def get_toast(self, text, timeout=5, poll_frequency=0.01):
+        """
+        描述：获取Toast的文本信息
+        参数：text需要检查的提示信息  time检查总时间  poll_frequency检查时间间隔
+        返回值：返回与之匹配到的toast信息
+        异常描述：none
+        """
+        toast_element = (By.XPATH, "//*[contains(@text, " + "'" + text + "'" + ")]")
+        toast = WebDriverWait(self.driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_element))
+        return toast.text
+
     def permission_btn(self):
         """
         处理权限弹窗
         """
-        button1 = "总是允许"
-        button2 = "始终允许"
-        button3 = "允许该操作"
-        button4 = "允许"
+        button1 = "com.android.packageinstaller:id/permission_allow_button"
+        button2 = ""
+        button3 = ""
+        button4 = ""
         list_btn = [button1, button2, button3, button4]
         for btn in list_btn:
             if btn in self.driver.page_source:
                 try:
-                    self.driver.find_element_by_android_uiautomator('new UiSelector().text("' + btn + '")').click()
+                    self.driver.find_element_by_id(btn).click()
                     break
                 except:
                     pass
