@@ -9,19 +9,19 @@ from selenium.webdriver.common.by import By
 
 class Common(BasePage):
 
-    def click(self, loc, index=0):
+    def click(self, loc, index=-1):
         """
         点击操作
         :param loc:
         :param index: 一组元素时的index值
         :return:
         """
-        if index != 0:
+        if index != -1:
             self.find_element(loc)[index].click()
         else:
             self.find_element(loc).click()
 
-    def send_keys(self, loc, value, index=0):
+    def send_keys(self, loc, value, index=-1):
         """
         输入操作
         :param loc:
@@ -29,7 +29,7 @@ class Common(BasePage):
         :param index: 一组元素时的index值
         :return:
         """
-        if index != 0:
+        if index != -1:
             self.find_element(loc)[index].clear()
             self.find_element(loc)[index].send_keys(value)
         else:
@@ -115,12 +115,12 @@ class Common(BasePage):
         """
         return self.driver.current_activity
 
-    def long_press(self, loc, index=0):
+    def long_press(self, loc, index=-1):
         """
         长按操作
         :return:
         """
-        if index != 0:
+        if index != -1:
             self.__touch_action().long_press(self.find_element(loc)[index], duration=1800).perform()
             return {"result": True}
         else:
