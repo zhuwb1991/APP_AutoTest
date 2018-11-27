@@ -74,6 +74,15 @@ class Common(BasePage):
         self.driver.swipe(l[0]/2, l[1]*3/4, l[0]/2, l[1]/4)
         time.sleep(1)
 
+    def swipe_down(self):
+        """
+        下拉屏幕
+        :return:
+        """
+        l = self.get_screen_size()
+        self.driver.swipe(l[0]/2, l[1]/4, l[0]/2, l[1]*3/4)
+        time.sleep(1)
+
     def switch_webview(self):
         try:
             n = 1
