@@ -1,4 +1,5 @@
 import time
+import os
 from .base_page import BasePage
 from appium.common.exceptions import NoSuchContextException
 from appium.webdriver.common.touch_action import TouchAction
@@ -124,6 +125,19 @@ class Common(BasePage):
         """
         return self.driver.current_activity
 
+    def get_value(self, loc, index=-1):
+        """
+        获取元素的值
+        :param loc:
+        :param index:
+        :return:
+        """
+        if index != -1:
+            value = self.find_element(loc)[index].get_attribute("text")
+        else:
+            value = self.find_element(loc).get_attribute("text")
+        return value
+
     def long_press(self, loc, index=-1):
         """
         长按操作
@@ -134,6 +148,15 @@ class Common(BasePage):
             return {"result": True}
         else:
             self.__touch_action().long_press(self.find_element(loc), duration=1800).perform()
+
+    def adb_tap(self, x='50', y='250'):
+        """
+        adb命令点击屏幕
+        :return:
+        """
+        cmd = "adb shell input tap " + x + " " + y
+        print(cmd)
+        os.system(cmd)
 
     def __touch_action(self):
         return TouchAction(self.driver)
