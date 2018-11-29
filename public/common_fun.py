@@ -4,6 +4,7 @@ from .base_page import BasePage
 from appium.common.exceptions import NoSuchContextException
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -172,9 +173,13 @@ class Common(BasePage):
         返回值：返回与之匹配到的toast信息
         异常描述：none
         """
-        toast_element = (By.XPATH, "//*[contains(@text, " + "'" + text + "'" + ")]")
-        toast = WebDriverWait(self.driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_element))
-        return toast.text
+        try:
+            toast_element = (By.XPATH, "//*[contains(@text, " + "'" + text + "'" + ")]")
+            toast = WebDriverWait(self.driver, timeout, poll_frequency).until(
+                EC.presence_of_element_located(toast_element))
+            return toast.text
+        except TimeoutException:
+            pass
 
     def is_exist(self, loc):
         """
