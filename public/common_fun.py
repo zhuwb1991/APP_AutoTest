@@ -112,10 +112,10 @@ class Common(BasePage):
         :param element: 传入元素的id或text属性
         :return:
         """
-        for i in range(1, 5):
-            if not element in self.driver.page_source:
+        for i in range(5):
+            if element not in self.driver.page_source:
                 l = self.get_screen_size()
-                self.driver.swipe(l[0]/2, l[1]*3/4, l[0]/2, l[1]/2)
+                self.driver.swipe(l[0]/2, l[1]/2, l[0]/2, l[1]/4)
             break
 
     def get_activity(self):
