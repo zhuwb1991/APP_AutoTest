@@ -3,6 +3,7 @@ import os
 from .base_page import BasePage
 from appium.common.exceptions import NoSuchContextException
 from appium.webdriver.common.touch_action import TouchAction
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -174,6 +175,18 @@ class Common(BasePage):
         toast_element = (By.XPATH, "//*[contains(@text, " + "'" + text + "'" + ")]")
         toast = WebDriverWait(self.driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_element))
         return toast.text
+
+    def is_exist(self, loc):
+        """
+        判断元素是否存在
+        :param loc:
+        :return:
+        """
+        try:
+            self.find_by(loc)
+            return True
+        except NoSuchElementException:
+            return False
 
     def permission_btn(self):
         """
