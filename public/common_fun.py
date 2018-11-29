@@ -140,7 +140,10 @@ class Common(BasePage):
 
     def long_press(self, loc, duration=1800, index=-1):
         """
-        长按操作
+
+        :param loc:
+        :param duration: 持续时间
+        :param index: 多个元素时的index
         :return:
         """
         if index != -1:
