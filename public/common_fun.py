@@ -147,10 +147,10 @@ class Common(BasePage):
         :return:
         """
         if index != -1:
-            self.__touch_action().long_press(self.find_element(loc)[index], duration=duration).perform()
+            self.__touch_action().long_press(self.find_element(loc)[index], duration=duration).release().perform()
             return {"result": True}
         else:
-            self.__touch_action().long_press(self.find_element(loc), duration=duration).perform()
+            self.__touch_action().long_press(self.find_element(loc), duration=duration).release().perform()
 
     def adb_tap(self, x='50', y='250'):
         """
