@@ -208,7 +208,7 @@ class Template_mixin(object):
     <meta http-equiv="Content-Type" content="text/html;charset="utf-8"/>
     
     <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.public.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
     <!-- <script type="text/javascript" src="js/echarts.public.min.js"></script> -->
     
     %(stylesheet)s
