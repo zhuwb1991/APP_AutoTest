@@ -193,6 +193,20 @@ class Common(BasePage):
         except NoSuchElementException:
             return False
 
+    def screenshot(self, text=''):
+        """
+        截图方法
+        :return:
+        """
+        now = time.strftime("%y%m%d%H%M%S")
+        PATH = lambda p: os.path.abspath(
+            os.path.join(os.path.dirname(__file__), p)
+        )
+        shot_path = PATH('../report/screenshoot')
+        if not os.path.exists(shot_path):
+            os.makedirs(shot_path)
+        self.driver.get_screenshot_as_file(shot_path + "/" + text + now + '.png')
+
     def permission_btn(self):
         """
         处理权限弹窗
