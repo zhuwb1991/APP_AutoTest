@@ -116,7 +116,29 @@ class ADB:
         """
         self.adb('shell pm clear %s' % package_name)
 
+    def __get_activity_info(self, version):
+        """
+        执行获取activity命令
+        :param version:
+        :return:
+        """
+        if float(version) < 8.0:
+            return self.shell('dumpsys activity | findstr "mFocus"').stdout.read()
+        else:
+            return self.shell('dumpsys activity | findstr "mResume"').stdout.read()
+
+    def get_activity(self, version):
+        """
+        获取当前页面的activity
+        :param version:
+        :return:
+        """
+        return self.__get_activity_info(version).decode('utf-8').split(' ')[-2]
+
 
 if __name__ == "__main__":
     A = ADB()
-    A.get_phone_info()
+    # A.get_phone_info()
+    a = A.get_activity("8.1")
+    print(type(a))
+    print(a)
