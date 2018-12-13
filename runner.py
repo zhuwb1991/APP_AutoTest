@@ -3,7 +3,8 @@ import threading
 import os
 import time
 import public.HTMLTestRunner
-from performance.get_mem import GetMemory
+from performance.performance_data import GetData
+from performance.performance_report import create_performance_report
 from public.appium_server import AppiumServer
 import public.adb_tool as a
 from public.adb_tool import ADB
@@ -52,8 +53,14 @@ def run_case(device):
 def perform(device_id, version):
 
     while True:
-        GetMemory(device_id, ADB(device_id).get_activity(version), 'package_name').get_mem()
-        time.sleep(1)
+        try:
+            GetData(device_id, ADB(device_id).get_activity(version), 'com.xxx.xxxxx').get_mem()
+            GetData(device_id, ADB(device_id).get_activity(version), 'com.xxx.Biz').get_cpu()
+            GetData(device_id, ADB(device_id).get_activity(version), 'com.xxx.xxxxxx').get_fps()
+            time.sleep(2)
+        except Exception as e:
+            print(e)
+            pass
 
 
 if __name__ == '__main__':
@@ -72,7 +79,7 @@ if __name__ == '__main__':
             info["deviceName"] = device_info["brand"]
             info["release"] = device_info["release"]
 
-            adb.clear_package('package_name')
+            adb.clear_package('com.xxx.xxxxxx')
 
             # 启动一个子线程，监测性能数据
             p = threading.Thread(target=perform, args=(d, device_info["release"]))
@@ -81,5 +88,6 @@ if __name__ == '__main__':
 
             run_case(info)
             server.stop_appium()
+            create_performance_report("com.xxx.xxxxxx", PATH("./report/性能报告.html"))
     else:
         print("暂无连接的设备")
