@@ -1,5 +1,6 @@
 import os
 import jinja2
+from config.basic_config import cpu_path, fps_path, mem_path
 
 
 PATH = lambda p: os.path.abspath(
@@ -96,13 +97,13 @@ def create_performance_report(package_name, report_path):
     template_loader = jinja2.FileSystemLoader(searchpath=PATH("./"))
     template_env = jinja2.Environment(loader=template_loader)
 
-    memory_data = read_performance_data(package_name, PATH("../report/performance/memory.txt"))
+    memory_data = read_performance_data(package_name, mem_path)
     memory_tuple = get_memory_data(memory_data)
 
-    cpu_data = read_performance_data(package_name, PATH("../report/performance/cpu.txt"))
+    cpu_data = read_performance_data(package_name, cpu_path)
     cpu_tuple = get_cpu_data(cpu_data)
 
-    fps_data = read_performance_data(package_name, PATH("../report/performance/fps.txt"))
+    fps_data = read_performance_data(package_name, fps_path)
     fps_tuple = get_fps_data(fps_data)
 
     template = template_env.get_template("report_template.html")

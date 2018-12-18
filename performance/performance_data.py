@@ -3,6 +3,7 @@ import os
 import subprocess
 import re
 from wsgiref.validate import validator
+from config.basic_config import cpu_path, fps_path, mem_path
 from public.adb_tool import call_adb
 from public.utils import write_file
 
@@ -34,7 +35,7 @@ class GetData:
         finally:
             current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             info = current_time + '\t' + str(mem) + 'MB\t' + self.activity + '\n'
-            write_file(PATH("../report/performance/memory.txt"), info)
+            write_file(mem_path, info)
 
     def __get_cpu_kel(self):
         """
@@ -62,12 +63,13 @@ class GetData:
         finally:
             current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             info = current_time + '\t' + str(cpu) + '\t' + self.activity + '\n'
-            write_file(PATH("../report/performance/cpu.txt"), info)
+            write_file(cpu_path, info)
 
     def get_fps(self):
 
         fps = 0
         try:
+            # 必须要在开发者选项--GPU呈现模式中 选择"在 adb shell dumpsys gfxinfo 中"这个选项
             cmd = "adb -s %s shell dumpsys gfxinfo %s" % (self.device_id, self.package_name)
             result = os.popen(cmd).read().strip()
             frames = [x for x in result.split('\n') if validator(x)]
@@ -94,7 +96,7 @@ class GetData:
         finally:
             current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             info = current_time + '\t' + str(fps) + '\t' + self.activity + '\n'
-            write_file(PATH("../report/performance/fps.txt"), info)
+            write_file(fps_path, info)
 
 
 if __name__ == '__main__':
