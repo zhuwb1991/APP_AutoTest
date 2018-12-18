@@ -116,4 +116,4 @@ def create_performance_report(package_name, report_path):
 
 
 if __name__ == '__main__':
-    create_performance_report("com.intsig.BizCardReader", r"C:\Users\wenbo_zhu\Desktop\app\test.html")
+    pass

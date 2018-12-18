@@ -100,5 +100,5 @@ class GetData:
 
 
 if __name__ == '__main__':
-    G = GetData("98895a374351554653", 'main', 'com.intsig.Biz')
+    G = GetData("98895a374351554653", 'main', 'com.xxx.xxx')
     print(G.get_fps())
